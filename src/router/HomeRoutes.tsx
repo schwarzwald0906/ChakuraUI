@@ -1,6 +1,7 @@
 import { Home } from "../components/pages/Home";
 import { Setting } from "../components/pages/Setting";
 import { UserManagement } from "../components/pages/UserManagiment";
+import { Page404 } from "../components/pages/Page404";
 
 export const homeRoutes = [
   {
@@ -17,5 +18,10 @@ export const homeRoutes = [
     exact: false,
     path: "/user_management",
     children: <UserManagement />
+  },
+  {
+    exact: false,
+    path: "/*",
+    children: <Page404 />
   }
 ];
