@@ -1,22 +1,31 @@
 import { memo, VFC } from "react";
-import { IconButton, useDisclosure } from "@chakra-ui/react";
-import { HamburgerIcon } from "@chakra-ui/icons";
+import {
+  Button,
+  Drawer,
+  DrawerBody,
+  DrawerContent,
+  DrawerOverlay
+} from "@chakra-ui/react";
 
 type Props = {
-  onOpen: () => void;
+  onClose: () => void;
+  isOpen: boolean;
 };
 
 export const MenuIconButton: VFC<Props> = memo((props) => {
-  const { onOpen } = props;
+  const { isOpen, onClose } = props;
 
   return (
-    <IconButton
-      aria-label="メニューボタン"
-      icon={<HamburgerIcon />}
-      size="sm"
-      variant="unstyled"
-      display={{ base: "block", md: "none" }}
-      onClick={onOpen}
-    />
+    <Drawer placement="left" size="xs" onClose={onClose} isOpen={isOpen}>
+      <DrawerOverlay>
+        <DrawerContent>
+          <DrawerBody p={0} bg="gray.100">
+            <Button w="100%">TOP</Button>
+            <Button w="100%">ユーザー一覧</Button>
+            <Button w="100%">設定</Button>
+          </DrawerBody>
+        </DrawerContent>
+      </DrawerOverlay>
+    </Drawer>
   );
 });
